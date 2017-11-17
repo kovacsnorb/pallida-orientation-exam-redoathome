@@ -45,5 +45,21 @@ namespace LicencePlateFinder.Controllers
                 return View(cars);
             }
         }
+
+        [Route("/search/{brand}")]
+        [HttpGet]
+        public IActionResult Index([FromRoute] string brand)
+        {
+            var cars = new List<Licence_plate>();
+            if (brand != null)
+            {
+                cars = licence_plateRepository.GetBrand(brand);
+                return View(cars);
+            }
+            else
+            {
+                return View(cars);
+            }
+        }
     }
 }

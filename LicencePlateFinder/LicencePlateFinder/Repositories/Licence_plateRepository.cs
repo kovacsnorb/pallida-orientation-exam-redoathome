@@ -30,5 +30,10 @@ namespace LicencePlateFinder.Repositories
         {
             return licence_PlateContext.Licence_plates.Where(p => p.Plate.StartsWith("DT")).ToList();
         }
+
+        public List<Licence_plate> GetBrand(string brand)
+        {
+            return licence_PlateContext.Licence_plates.Where(p => p.Car_brand == brand).ToList();
+        }
     }
 }
