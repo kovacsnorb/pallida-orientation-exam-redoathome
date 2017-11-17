@@ -1,4 +1,5 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@model List<LicencePlateFinder.Models.Licence_plate>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
@@ -6,5 +7,23 @@
     <h1>
         Licence plate finder
     </h1>
+
+    <form action="/search" method="get">
+        <label for="q">Plate: </label>
+        <input type="text" id="q" name="q" />
+        <div>
+            <button type="submit">Search</button>
+        </div>
+    </form>
+
+    @{
+        foreach (var plate in Model)
+        {
+            @plate.Plate <br/>
+        }
+    }
+
+    
+
 </body>
 </html>
