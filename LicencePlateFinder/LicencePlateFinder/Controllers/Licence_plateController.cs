@@ -64,5 +64,21 @@ namespace LicencePlateFinder.Controllers
                 return View(cars);
             }
         }
+
+        [Route("/api/search/{brand}")]
+        [HttpGet]
+        public IActionResult ApiBrand([FromRoute] string brand)
+        {
+            var cars = new List<Licence_plate>();
+            if (brand != null)
+            {
+                cars = licence_plateRepository.GetBrand(brand);
+                return Json(cars);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
