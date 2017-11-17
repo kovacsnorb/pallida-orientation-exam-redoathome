@@ -28,7 +28,7 @@ namespace LicencePlateFinder.Controllers
             Regex regexObj = new Regex("^[a-zA-Z0-9-]+$", RegexOptions.Multiline);
 
             var cars = new List<Licence_plate>();
-            if (q != null && regexObj.Match(q).Success)
+            if (q != null && regexObj.Match(q).Success && q.Length <= 7)
             {
                 cars = licence_plateRepository.GetCars(q);
                 return View(cars);
