@@ -22,11 +22,28 @@ namespace LicencePlateFinder.Controllers
         [Route("")]
         [Route("/search")]
         [HttpGet]
-        public IActionResult Index([FromQuery] string q)
+        public IActionResult Index([FromQuery] string q, int police, int diplomat)
         {
             var cars = new List<Licence_plate>();
-            cars = licence_plateRepository.GetCars(q);
-            return View(cars);
+            if (q != null)
+            {
+                cars = licence_plateRepository.GetCars(q);
+                return View(cars);
+            }
+            else if (police == 1)
+            {
+                cars = licence_plateRepository.GetPoliceCars(police);
+                return View(cars);
+            }
+            else if (diplomat == 1)
+            {
+                cars = licence_plateRepository.GetDiplomatCars(police);
+                return View(cars);
+            }
+            else
+            {
+                return View(cars);
+            }
         }
     }
 }

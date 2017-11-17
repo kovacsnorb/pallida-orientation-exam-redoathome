@@ -20,5 +20,15 @@ namespace LicencePlateFinder.Repositories
         {
             return licence_PlateContext.Licence_plates.Where(p => p.Plate.Contains(plateSearch)).ToList();
         }
+
+        public List<Licence_plate> GetPoliceCars(int policeNumber)
+        {
+            return licence_PlateContext.Licence_plates.Where(p => p.Plate.StartsWith("RB")).ToList();
+        }
+
+        public List<Licence_plate> GetDiplomatCars(int diplomatNumber)
+        {
+            return licence_PlateContext.Licence_plates.Where(p => p.Plate.StartsWith("DT")).ToList();
+        }
     }
 }
