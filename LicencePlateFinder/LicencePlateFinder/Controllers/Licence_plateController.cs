@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LicencePlateFinder.Repositories;
 using LicencePlateFinder.Models;
+using System.Text.RegularExpressions;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,8 +25,10 @@ namespace LicencePlateFinder.Controllers
         [HttpGet]
         public IActionResult Index([FromQuery] string q, int police, int diplomat)
         {
+            Regex regexObj = new Regex("^[a-zA-Z0-9-]+$", RegexOptions.Multiline);
+
             var cars = new List<Licence_plate>();
-            if (q != null)
+            if (q != null && regexObj.Match(q).Success)
             {
                 cars = licence_plateRepository.GetCars(q);
                 return View(cars);
